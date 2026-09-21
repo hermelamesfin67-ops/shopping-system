@@ -105,7 +105,7 @@ export function Header() {
                             )}
                         </button>
 
-                        {/* User Profile Avatar with dropdown (exact match to Screenshot 3) */}
+                        {/* User Profile Avatar with dropdown */}
                         <div className="relative">
                             <button
                                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
