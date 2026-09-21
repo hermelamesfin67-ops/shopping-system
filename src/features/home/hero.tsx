@@ -9,7 +9,7 @@ import { FaApple } from "react-icons/fa6";
 function Hero() {
     const [selectedCategory, setSelectedCategory] = useState("")
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-6 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start py-6 w-full">
             <div className="hidden lg:block lg:col-span-3 border-r border-neutral-200 pr-6 space-y-3 pt-2">
                 {SIDEBAR_CATEGORIES.map((cat) => {
                     const isSelected = selectedCategory === cat.name;

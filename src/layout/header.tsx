@@ -20,7 +20,7 @@ export function Header() {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const cart = [{ quantity: 3 }]
-    const wishlist = []
+    const wishlist = [{}]
     const user = {
         name: "Jon Doe",
         isLoggedIn: true
