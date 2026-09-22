@@ -24,11 +24,11 @@ export function ProductCard({
             <div className="relative w-full aspect-square bg-[#F5F5F5] rounded-sm overflow-hidden flex items-center justify-center p-4">
                 {/* Discount / New Badge */}
                 <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
-                    {product.discountPercent && (
+                    {product.discountPercent ? (
                         <span className="bg-[#DB4444] text-white text-xs font-normal px-2.5 py-1 rounded">
                             -{product.discountPercent}%
                         </span>
-                    )}
+                    ) : null}
                     {product.isNew && (
                         <span className="bg-[#00FF66] text-black text-xs font-medium px-2.5 py-1 rounded">
                             NEW
@@ -80,7 +80,7 @@ export function ProductCard({
                     alt={product.name}
                     width={100}
                     height={100}
-                    className="max-h-[85%] max-w-[85%] object-contain object-center group-hover:scale-105 transition-transform duration-300"
+                    className="h-full w-full object-contain object-center group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                 />
 
@@ -108,11 +108,11 @@ export function ProductCard({
                     <span className="font-semibold text-[#DB4444]">
                         ${product.price}
                     </span>
-                    {product.originalPrice && (
+                    {product.discountPercent ? (
                         <span className="text-neutral-400 line-through">
                             ${product.originalPrice}
                         </span>
-                    )}
+                    ) : null}
                 </div>
 
                 <div className="flex items-center gap-1.5 pt-0.5">

@@ -4,12 +4,12 @@ import TitleSubTitle from '@/components/title-description';
 import { PRODUCTS } from '@/data';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-function BestSellingProducts() {
+function OurProducts() {
   return (
     <section className="space-y-8">
       <TitleSubTitle
-        title='This Month'
-        subTitle='Browse By Category'
+        title='Our Products'
+        subTitle='Explore Our Products'
       >
         <div className="flex items-center gap-2">
           <button
@@ -39,4 +39,4 @@ function BestSellingProducts() {
   )
 }
 
-export default BestSellingProducts
+export default OurProducts

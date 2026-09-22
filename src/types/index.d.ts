@@ -15,8 +15,8 @@ interface Product {
   image: string;
   category: string;
   isNew?: boolean;
-  description: string;
-  inStock: boolean;
+  description?: string;
+  inStock?: boolean;
   colors?: string[];
   sizes?: string[];
 }
