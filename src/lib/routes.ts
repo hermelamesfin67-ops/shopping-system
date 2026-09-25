@@ -1,5 +1,6 @@
 export const routes = {
-  signIn: "/auth/signin",
+  signIn: "/auth/login",
+  signUp: "/auth/sign-up",
   signOut: "/auth/signout",
   error: "/auth/error",
 };

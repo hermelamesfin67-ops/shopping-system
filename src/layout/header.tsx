@@ -14,17 +14,18 @@ import {
     X,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { routes } from "@/lib/routes";
+import { signOut, useSession } from "next-auth/react";
 
 export function Header() {
-
+    const router = useRouter()
+    const { data: session } = useSession()
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const cart = [{ quantity: 3 }]
     const wishlist = [{}]
-    const user = {
-        name: "Jon Doe",
-        isLoggedIn: true
-    }
+
     // Total quantity in cart
     const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     const wishlistItemCount = wishlist.length;
@@ -110,7 +111,7 @@ export function Header() {
                             <button
                                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                                 className="w-8 h-8 rounded-full bg-[#DB4444] text-white flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
-                                title={user.isLoggedIn ? `Account (${user.name})` : "Account"}
+                                title={session?.user ? `Account (${session?.user.name})` : "Account"}
                                 aria-label="User account"
                             >
                                 <User className="w-4 h-4" />
@@ -118,12 +119,12 @@ export function Header() {
 
                             {isUserMenuOpen && (
                                 <div className="absolute right-0 mt-3 w-56 rounded-md bg-linear-to-b from-neutral-600 to-neutral-700 backdrop-blur-md text-white shadow-xl py-2 z-50 text-sm border border-neutral-700/50 animate-in fade-in zoom-in-95 duration-150">
-                                    {user.isLoggedIn ? (
+                                    {session?.user ? (
                                         <>
                                             <div className="px-4 py-2 border-b border-neutral-700/60 mb-1">
                                                 <p className="text-xs text-neutral-400">Signed in as</p>
                                                 <p className="text-sm font-semibold truncate text-white">
-                                                    {user.name || "User"}
+                                                    {session?.user.name || "User"}
                                                 </p>
                                             </div>
                                             <button
@@ -165,6 +166,8 @@ export function Header() {
                                             <div className="border-t border-neutral-700/60 my-1"></div>
                                             <button
                                                 onClick={() => {
+                                                    signOut()
+                                                    router.replace(routes.signIn)
                                                     setIsUserMenuOpen(false);
                                                 }}
                                                 className="w-full flex items-center gap-3 px-4 py-2 text-red-300 hover:bg-neutral-800 hover:text-red-200 transition-colors text-left"
@@ -177,6 +180,7 @@ export function Header() {
                                         <>
                                             <button
                                                 onClick={() => {
+                                                    router.replace(routes.signIn)
                                                     setIsUserMenuOpen(false);
                                                 }}
                                                 className="w-full flex items-center gap-3 px-4 py-2.5 text-neutral-200 hover:bg-neutral-800 hover:text-white transition-colors text-left"
@@ -186,6 +190,7 @@ export function Header() {
                                             </button>
                                             <button
                                                 onClick={() => {
+                                                    router.replace(routes.signUp)
                                                     setIsUserMenuOpen(false);
                                                 }}
                                                 className="w-full flex items-center gap-3 px-4 py-2.5 text-neutral-200 hover:bg-neutral-800 hover:text-white transition-colors text-left"

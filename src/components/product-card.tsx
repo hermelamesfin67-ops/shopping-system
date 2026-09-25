@@ -1,18 +1,16 @@
 "use client"
-import { Heart, Eye, Trash2, Star, ShoppingCart } from "lucide-react";
+import { Heart, Eye, Trash2, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 interface ProductCardProps {
     product: Product;
     variant?: "standard" | "wishlist";
-    showAlwaysAddToCart?: boolean;
 }
 
 export function ProductCard({
     product,
     variant = "standard",
-    showAlwaysAddToCart = false,
 }: ProductCardProps) {
     const [, toggleWishlist] = useState({})
     const isFavorited = false
@@ -23,7 +21,7 @@ export function ProductCard({
             {/* Image & Overlay Area */}
             <div className="relative w-full aspect-square bg-[#F5F5F5] rounded-sm overflow-hidden flex items-center justify-center p-4">
                 {/* Discount / New Badge */}
-                <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
+                {/* <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
                     {product.discountPercent ? (
                         <span className="bg-[#DB4444] text-white text-xs font-normal px-2.5 py-1 rounded">
                             -{product.discountPercent}%
@@ -34,7 +32,7 @@ export function ProductCard({
                             NEW
                         </span>
                     )}
-                </div>
+                </div> */}
 
                 {/* Top Right Action Icons */}
                 <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
@@ -85,10 +83,7 @@ export function ProductCard({
                 />
 
                 <button
-                    className={`absolute bottom-0 inset-x-0 bg-black text-white text-xs font-medium py-2.5 flex items-center justify-center gap-2 cursor-pointer transition-all duration-200 z-10 ${showAlwaysAddToCart
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0"
-                        }`}
+                    className={`absolute bottom-0 inset-x-0 bg-black text-white text-xs font-medium py-2.5 flex items-center justify-center gap-2 cursor-pointer transition-all duration-200 z-10 opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0`}
                 >
                     <ShoppingCart className="w-3.5 h-3.5" />
                     <span>Add To Cart</span>
@@ -97,8 +92,7 @@ export function ProductCard({
 
             <div className="pt-3 space-y-1">
                 <h3
-                    className="font-medium text-sm sm:text-base text-neutral-900 truncate hover:text-[#DB4444] cursor-pointer transition-colors"
-                    title={product.name}
+                    className="capitalize font-medium text-sm sm:text-base text-neutral-900 truncate hover:text-[#DB4444] cursor-pointer transition-colors"
                 >
                     {product.name}
                 </h3>
@@ -108,14 +102,14 @@ export function ProductCard({
                     <span className="font-semibold text-[#DB4444]">
                         ${product.price}
                     </span>
-                    {product.discountPercent ? (
+                    {/* {product.discountPercent ? (
                         <span className="text-neutral-400 line-through">
                             ${product.originalPrice}
                         </span>
-                    ) : null}
+                    ) : null} */}
                 </div>
 
-                <div className="flex items-center gap-1.5 pt-0.5">
+                {/* <div className="flex items-center gap-1.5 pt-0.5">
                     <div className="flex items-center text-[#FFAD33]">
                         {[1, 2, 3, 4, 5].map((star) => (
                             <Star
@@ -130,7 +124,7 @@ export function ProductCard({
                     <span className="text-xs text-neutral-500 font-medium">
                         ({product.reviewCount})
                     </span>
-                </div>
+                </div> */}
             </div>
         </div>
     );
